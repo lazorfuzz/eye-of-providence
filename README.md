@@ -28,4 +28,29 @@ And finally:
 yarn start
 ```
 
-You can find other useful commands in package.json.
+
+## Building
+
+```
+yarn build
+```
+
+
+## Component Boilerplate Generation
+
+```
+yarn generate
+```
+
+
+## Linting
+
+```
+yarn lint:eslint
+```
+
+## Testing
+
+```
+yarn test
+```

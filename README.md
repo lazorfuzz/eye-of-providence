@@ -15,12 +15,17 @@ http://199.195.116.247:3000/
 ```
 git clone https://github.com/lazorfuzz/eye-of-providence.git
 ```
-After you `cd eye-of-providence`, install dependencies:
+After you `cd eye-of-providence`, install yarn:
 ```
-npm install
+npm install yarn -g
 ```
-Finally,
+Install dependencies:
 ```
-npm start
+yarn
 ```
+And finally:
+```
+yarn start
+```
+
 You can find other useful commands in package.json.

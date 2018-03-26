@@ -8,6 +8,10 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   header: {
     id: 'app.components.Footer.header',
-    defaultMessage: 'Copyright (c) 2018 Leon Li. All cams were found with the Shodan API, and were made public by their owners.',
+    defaultMessage: 'Copyright (c) 2018 Leon Li. All cams were found with the Shodan API, and were made public by their owners. ',
   },
+  urltext: {
+    id: 'app.components.Footer.urltext',
+    defaultMessage: 'View on GitHub'
+  }
 });

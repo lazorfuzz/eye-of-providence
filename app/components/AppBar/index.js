@@ -19,6 +19,7 @@ const Bar = styled.div`
   justify-content: center;
   text-align: center;
   overflow-x: hidden;
+  align-items: center;
   -webkit-box-shadow: 0px 4px 24px -9px rgba(0,0,0,1);
   -moz-box-shadow: 0px 4px 24px -9px rgba(0,0,0,1);
   box-shadow: 0px 4px 24px -9px rgba(0,0,0,1);
@@ -30,13 +31,14 @@ const Title = styled.h1`
 
 const Version = styled.p`
   color: #888;
+  margin-left: 10px;
 `;
 
 class AppBar extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       <Bar>
-        <Title>Eye of Providence</Title><Version>0.0.1</Version>
+        <Title>Eye of Providence</Title><Version>0.0.2</Version>
       </Bar>
     );
   }

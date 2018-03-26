@@ -21,9 +21,21 @@ const Wrapper = styled.div`
   color: #00E676;
   font-size: 16px;
   padding: 5px;
-  margin: 15px 10px;
+  margin: 15px 15px;
   border-radius: 10px;
   border: 1px solid #00E676;
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+  &:hover {
+    margin-top: 12px;
+    -webkit-box-shadow: 0px 3px 15px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 3px 15px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 3px 15px 0px rgba(0,0,0,0.75);
+  }
+  &:hover ${Link} {
+    color: white;
+  }
 `;
 
 class Window extends React.Component { // eslint-disable-line react/prefer-stateless-function
@@ -31,7 +43,7 @@ class Window extends React.Component { // eslint-disable-line react/prefer-state
     return (
       <Wrapper>
         <div style={{ height: '85%', marginBottom: '5px' }}>
-          <Link href={this.props.link} target="_blank">
+          <Link href={this.props.videoSrc} target="_blank">
             <Cam
               alt="cam"
               src={this.props.videoSrc}

@@ -1,7 +1,18 @@
 const express = require('express');
+const Database = require('nedb');
+const resolve = require('path').resolve;
 const util = require('./util');
 
 const router = express.Router();
+const db = new Database({ filename: resolve(process.cwd(), 'eye.db'), autoload: true, timestampData: true });
+
+db.find({ type: 'Cam' }, (err, docs) => {
+  if (docs.length === 0) {
+    util.getCams().map((cam) => {
+      return db.insert({ type: 'Cam', url: cam });
+    });
+  }
+});
 
 router.use((req, res, next) => {
   // console.log(req);
@@ -9,12 +20,17 @@ router.use((req, res, next) => {
 });
 
 router.get('/', (req, res) => {
-  res.json({ message: 'It works!' });
+  res.send('Eye of Providence API!');
 });
 
 router.route('/cams')
   .get((req, res) => {
-    res.json(util.getCams());
+    db.find({ type: 'Cam' }, (err, docs) => res.json(docs));
+  })
+  .post((req, res) => {
+    db.update({ type: 'Cam', url: req.body.url }, { type: 'Cam', url: req.body.url }, { upsert: true }, (err, numAffected, affDocs) => {
+      res.json(affDocs);
+    });
   });
 
 module.exports = router;

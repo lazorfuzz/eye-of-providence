@@ -43,7 +43,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
   }
 
   checkVideos(cams) {
-    return Promise.all(cams.map((c) => this.checkUp(c)))
+    return Promise.all(cams.map((c) => this.checkUp(c.url)))
       .then((data) => {
         return data.filter((d) => d);
       });

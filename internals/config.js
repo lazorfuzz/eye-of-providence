@@ -23,8 +23,10 @@ const ReactBoilerplate = {
       exclude: [
         'chalk',
         'compression',
+        'nedb',
         'cross-env',
         'express',
+        'body-parser',
         'ip',
         'minimist',
         'sanitize.css',

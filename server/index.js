@@ -1,8 +1,8 @@
 /* eslint consistent-return:0 */
 
 const express = require('express');
+const bodyparser = require('body-parser');
 const logger = require('./logger');
-
 const argv = require('./argv');
 const port = require('./port');
 const setup = require('./middlewares/frontendMiddleware');
@@ -12,6 +12,7 @@ const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel ? require('ngr
 const resolve = require('path').resolve;
 const app = express();
 
+app.use(bodyparser.json());
 app.use('/api', api);
 
 // In production we need to pass these values in instead of relying on webpack

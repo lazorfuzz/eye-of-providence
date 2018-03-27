@@ -12,6 +12,6 @@ export default defineMessages({
   },
   urltext: {
     id: 'app.components.Footer.urltext',
-    defaultMessage: 'View on GitHub'
-  }
+    defaultMessage: 'View on GitHub',
+  },
 });

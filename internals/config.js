@@ -27,6 +27,8 @@ const ReactBoilerplate = {
         'cross-env',
         'express',
         'body-parser',
+        'sshpk',
+        'atob',
         'ip',
         'minimist',
         'sanitize.css',

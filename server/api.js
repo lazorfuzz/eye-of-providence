@@ -14,6 +14,15 @@ db.find({ type: 'Cam' }, (err, docs) => {
   }
 });
 
+function isAuthenticated(req, res, next) {
+  if (req.headers.key) {
+    if (util.matchKeys(req.headers.key)) {
+      return next();
+    }
+  }
+  return res.json({ status: 'Not authorized, buddy.' });
+}
+
 router.use((req, res, next) => {
   // console.log(req);
   next();
@@ -27,7 +36,7 @@ router.route('/cams')
   .get((req, res) => {
     db.find({ type: 'Cam' }, (err, docs) => res.json(docs));
   })
-  .post((req, res) => {
+  .post(isAuthenticated, (req, res) => {
     if (!req.body.url) {
       res.json({ status: false });
       return;
@@ -43,7 +52,7 @@ router.route('/cams/:_id')
       res.json(docs);
     });
   })
-  .delete((req, res) => {
+  .delete(isAuthenticated, (req, res) => {
     db.remove({ type: 'Cam', _id: req.params._id }); // eslint-disable-line
     res.json({ status: true });
   });

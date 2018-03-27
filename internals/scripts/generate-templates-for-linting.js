@@ -1,9 +1,3 @@
-/**
- * This script is for internal `react-boilerplate`'s usage. The only purpose of generating all of these templates is
- * to be able to lint them and detect critical errors. Every generated component's name has to start with
- * 'RbGenerated' so it can be easily excluded from the test coverage reports.
- */
-
 const nodePlop = require('node-plop');
 const path = require('path');
 const chalk = require('chalk');
@@ -33,7 +27,7 @@ const removeTestsDirFrom = (relativePath) => () => rimraf.sync(path.join(__dirna
 const plop = nodePlop('./index');
 
 const componentGen = plop.getGenerator('component');
-componentGen.runActions({ name: 'RbGeneratedComponentEsclass', type: 'React.Component', wantMessages: true, wantLoadable: true, })
+componentGen.runActions({ name: 'RbGeneratedComponentEsclass', type: 'React.Component', wantMessages: true, wantLoadable: true })
   .then(checkForErrors)
   .then(removeTestsDirFrom('components/RbGeneratedComponentEsclass'))
   .catch(reportErrorsFor('component/React.Component'));

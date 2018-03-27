@@ -20,7 +20,7 @@ function isAuthenticated(req, res, next) {
       return next();
     }
   }
-  return res.json({ status: 'Not authorized, buddy.' });
+  return res.status(401).send('You can\'t do it buddy.');
 }
 
 router.use((req, res, next) => {

@@ -15,12 +15,10 @@ db.find({ type: 'Cam' }, (err, docs) => {
 });
 
 function isAuthenticated(req, res, next) {
-  if (req.headers.key) {
-    if (util.matchKeys(req.headers.key)) {
-      return next();
-    }
+  if (req.headers.key && util.matchKeys(req.headers.key)) {
+    return next();
   }
-  return res.status(401).send('You can\'t do it buddy.');
+  return res.status(401).send('Check ur privilege');
 }
 
 router.use((req, res, next) => {
@@ -38,7 +36,7 @@ router.route('/cams')
   })
   .post(isAuthenticated, (req, res) => {
     if (!req.body.url) {
-      res.json({ status: false });
+      res.status(403).send('You can\'t do it buddy');
       return;
     }
     db.update({ type: 'Cam', url: req.body.url }, { type: 'Cam', url: req.body.url }, { upsert: true }, (err, numAffected, affDocs) => {

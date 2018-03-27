@@ -9,15 +9,20 @@ function getCams() {
 }
 
 function matchKeys(privKey) {
+  let key;
   const pkey = sshpk.parseKey(pubKey, 'ssh');
-  const key = sshpk.parsePrivateKey(atob(privKey), 'ssh');
-  const data = 'Respecting wamen';
-  const message = key.createSign('sha256');
-  message.update(data);
-  const signature = message.sign();
-  const ver = pkey.createVerify('sha256');
-  ver.update(data);
-  return ver.verify(signature);
+  try {
+    key = sshpk.parsePrivateKey(atob(privKey), 'ssh');
+    const data = 'Respecting wamen';
+    const message = key.createSign('sha256');
+    message.update(data);
+    const signature = message.sign();
+    const ver = pkey.createVerify('sha256');
+    ver.update(data);
+    return ver.verify(signature);
+  } catch (e) {
+    return false;
+  }
 }
 
 module.exports = {

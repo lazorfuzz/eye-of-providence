@@ -8,6 +8,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
     super(props);
     this.state = {
       videos: [],
+      maxCams: 32
     };
     this.getVideos = this.getVideos.bind(this);
     this.checkVideos = this.checkVideos.bind(this);
@@ -21,7 +22,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
   getVideos() {
     fetch(`${location.href}api/cams`)
       .then((res) => res.json())
-      .then((data) => this.checkVideos(data))
+      .then(this.checkVideos)
       .catch(console.error);
   }
 
@@ -29,7 +30,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
     return new Promise((resolve) => {
       fetch(cam.replace('/video', ''))
         .then((res) => {
-          if (res.ok) {
+          if (res.ok && this.state.videos.length < this.state.maxCams) {
             this.setState({ videos: [...this.state.videos, cam] });
             return resolve(cam);
           }
